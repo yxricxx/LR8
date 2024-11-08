@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IGRA NUMBERS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Who Has the Higher Number?</h1>
+
+    <div class="container">
+        <div class="playerArea">
+            <div id="userScore" class="playerInfo">User:</div>
+            <div id="userNum" class="number">0</div>
+        </div>
+        <button id="genButton" class="genButton">PLAY!</button>
+        <div class="playerArea">
+            <div id="compScore" class="playerInfo">AI: 0</div>
+            <div id="compNum" class="number">0</div>
+        </div>
+    </div>
+
+    <script>
+        let userName = prompt("Enter your name:");
+        let userScore = 0;
+        let compScore = 0;
+
+        document.getElementById("userScore").innerText = userName + ": " + userScore;
+        document.getElementById("genButton").addEventListener("click", function() {
+            if (userScore < 3 && compScore < 3) {
+                let userNum = Math.floor(Math.random() * 10) + 1;
+                let compNum = Math.floor(Math.random() * 10) + 1;
+
+                document.getElementById("userNum").innerText = userNum;
+                document.getElementById("compNum").innerText = compNum;
+
+                if (userNum > compNum) {
+                    userScore++;
+                    document.getElementById("userScore").innerText = userName + ": " + userScore;
+                } else if (compNum > userNum) {
+                    compScore++;
+                    document.getElementById("compScore").innerText = "AI: " + compScore;
+                }
+
+                if (userScore === 3) {
+                    alert(userName + " wins the game!!!");
+                } else if (compScore === 3) {
+                    alert("AI wins the game!!!");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
